@@ -1,0 +1,19 @@
+﻿<div class="card">
+    <div class="card-header">
+        <div class="container">
+            <div class="row">
+                <div class="col col-sm-10">
+                    <h6 class="text-info">Expense & budgets over the year</h6>
+                </div>
+                <div class="col col-sm-2 text-right">
+                    <select asp-items="ViewBag.Years" class="form-control yearsdropdownbar"></select>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="BudgetsAndExpensesByYear graphics">
+                <canvas id="BudgetsAndExpensesByYearBarChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>

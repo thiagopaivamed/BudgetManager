@@ -1,0 +1,80 @@
+﻿@model BudgetManager.ViewModels.CardDataViewModel
+
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="mycards">
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <div class="card card-earnings">
+                    <div class="card-body">
+                        <h6 class="card-title text-primary">EARNINGS (ANNUAL)</h6>
+                        <h5 class="card-text">$ @Math.Round(Model.SumOfBudgets, 2)</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card card-expenses">
+                    <div class="card-body">
+                        <h6 class="card-title text-danger">EXPENSES (ANNUAL)</h6>
+                        <h5 class="card-text">$ @Math.Round(Model.SumOfExpense, 2)</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card card-total">
+                    <div class="card-body">
+                        <h6 class="card-title text-warning">TOTAL</h6>
+                        <h5 class="card-text">$ @Math.Round(Model.Total, 2)</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="graphs">
+    <div class="container-fluid">
+        <div class="alert alert-light">
+            <div class="row">
+                <div class="col col-sm-8">
+                    <h6>Report period</h6>
+                </div>
+                <div class="col col-sm-2">
+                    <select asp-items="ViewBag.Months" class="form-control monthspiedropdown"></select>
+                </div>
+                <div class="col col-sm-2">
+                    <select asp-items="ViewBag.Years" class="form-control yearspiedropdown"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="graphics">
+        <partial name="_BudgetsAndExpensesPieChart" />
+    </div>
+</div>
+
+
+<div class="graphs container-fluid">
+    <partial name="_BudgetsAndExpensesByYearBarChart" />
+</div>
+
+@section Scripts{
+
+    <script src="~/js/ChartBuilders.js"></script>
+    <script src="~/js/ProgressBarsBuilders.js"></script>
+    <script src="~/js/CommonMethods.js"></script>
+
+    <script>
+        GetPieChartData();
+        GetProgressBarBudgetsData();
+        GetBarChartBudgetsAndExpensesByYear();   
+        GetProgressBarBudgetsData();        
+    </script>
+}

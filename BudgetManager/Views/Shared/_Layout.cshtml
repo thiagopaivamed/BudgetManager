@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BudgetManager</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" />
+    </environment>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+
+    <div class="row">
+        <div class="col-2">
+            <nav id="sidebar" class="navbar-dark bg-dark">
+                <ul class="list-unstyled components">
+                    <li class="">
+                        <a class="item titleList" asp-area="" asp-controller="UserApp" asp-action="Login">BUDGET MANAGER</a>
+                    </li>
+
+                    <li>
+                        <a class="item" asp-area="" asp-controller="Dashboard" asp-action="Index"><i class="fas fa-chart-pie icons"></i>  DASHBOARD</a>
+                    </li>
+
+                    <li>
+                        <a class="item" asp-area="" asp-controller="Budgets" asp-action="Index"><i class="far fa-money-bill-alt icons"></i> BUDGETS</a>
+                    </li>
+
+                    <li>
+                        <a class="item" asp-area="" asp-controller="Expenses" asp-action="Index"><i class="fas fa-utensils icons"></i> EXPENSES</a>
+                    </li>
+
+                    <li>
+                        <a class="item" asp-area="" asp-controller="Categories" asp-action="Index"><i class="fas fa-list-ul icons"></i> CATEGORIES</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-10 content">
+            <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @await Component.InvokeAsync("UserAutheticated");
+                        }
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                <main role="main" class="main">
+                    @RenderBody()
+                </main>
+            </div>
+
+            <footer class="border-top footer text-muted text-center">
+                <div class="container">
+                    &copy; 2019 - BudgetManager
+                </div>
+            </footer>
+        </div>
+
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+        <script src="https://kit.fontawesome.com/5c699a53ec.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+        <script src="https://kit.fontawesome.com/5c699a53ec.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#sidebar').toggleClass('active');
+            }
+        </script>
+
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
